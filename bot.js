@@ -20,6 +20,11 @@ Discord API: ${client.ping.toFixed(0)} ms\`\`\``);
     }
 });
 
+client.on('guildMemberAdd', member=> {
+    member.addRole(member.guild.roles.find("name","Member"));
+    });
+
+
 client.on('message', message => {
 	var prefix = "-";
 if(!message.channel.guild) return;
