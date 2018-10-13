@@ -72,6 +72,7 @@ client.on('guildMemberAdd', member=> {
 
 
 client.on('message', message => {
+	if (message.author.bot) return;
 	var prefix = "-";
 if(!message.channel.guild) return;
 if(message.content.startsWith(prefix + 'move')) {
@@ -105,6 +106,7 @@ message.react("❌")
 
 
 client.on("message", message => {
+	if (message.author.bot) return;
 	var prefix = "-";
 	var args = message.content.split(' ').slice(1); 
 	var msg = message.content.toLowerCase();
@@ -278,6 +280,7 @@ client.on("message", (message) => {
 
 client.on('message', message => {
 	//xRGRx .. By Julian
+	if (message.author.bot) return;
 	var command = message.content.toLowerCase().split(" ")[0];
 	var args = message.content.toLowerCase().split(" ");
 if(null == message.guild || !message.guild) return;
@@ -374,7 +377,8 @@ if(null == message.guild || !message.guild) return;
 	}
 });
 
-client.on('message', message => {       
+client.on('message', message => {  
+	if (message.author.bot) return;
 if (message.content.startsWith(prefix + 'clear')) { //xRGRx .. By Julian
 	if(!message.channel.guild) return message.reply(':no_entry: | This Command For Servers Only!'); 
 		if(!message.member.hasPermission('MANAGE_MESSAGES')) return message.channel.send(':no_entry: | You dont have **MANAGE_MESSAGES** Permission!');
@@ -388,7 +392,8 @@ if (message.content.startsWith(prefix + 'clear')) { //xRGRx .. By Julian
   }
   });
   
-client.on('message', message => {       
+client.on('message', message => {   
+	if (message.author.bot) return;
 if (message.content.startsWith('مسح')) { //xRGRx .. By Julian
 	if(!message.channel.guild) return message.reply(':no_entry: | This Command For Servers Only!'); 
 		if(!message.member.hasPermission('MANAGE_MESSAGES')) return message.channel.send(':no_entry: | You dont have **MANAGE_MESSAGES** Permission!');
@@ -403,7 +408,7 @@ if (message.content.startsWith('مسح')) { //xRGRx .. By Julian
   });  
 
 client.on('message', message => {
-
+if (message.author.bot) return;
 
 if (message.content === prefix + "mutechannel") {
 if(!message.channel.guild) return message.reply(':no_entry: | This Command For Servers Only!'); 
@@ -447,6 +452,7 @@ member.addRole(Julian[member.user.id].roles.shift());
 
 
 client.on('message', message => {
+	if (message.author.bot) return;
     if(message.content.startsWith(prefix + 'mvall')) {
 	    if(!message.channel.guild) return message.reply(':no_entry: | This Command For Servers Only!');
      if (!message.member.hasPermission("MOVE_MEMBERS")) return message.channel.send('**لايوجد لديك صلاحية سحب الأعضاء**');
@@ -463,17 +469,6 @@ client.on('message', message => {
      }
        });
 
-client.on('message',async message => {
-if(message.content === '-unall') {
-	if(!message.channel.guild) return message.reply(':no_entry: | This Command For Servers Only!');
-message.guild.fetchBans().then(ba => {
-ba.forEach(ns => {
-message.guild.unban(ns);
-message.reply('Done ✅');
-});
-});
-}
-});
 
 
 client.on('message', message => {
@@ -494,6 +489,7 @@ client.on('message', message => {
 
 
 client.on('message', message => { 
+	if (message.author.bot) return;
 	var prefix ="-";
            if (message.content.startsWith(prefix + "user")) {
      var args = message.content.split(" ").slice(1);
@@ -538,6 +534,7 @@ function timeCon(time) {
 
 
 client.on('message', message => {
+	if (message.author.bot) return;
     if (message.content.startsWith(prefix + "bot")) {
     message.channel.send({
         embed: new Discord.RichEmbed()
@@ -562,6 +559,7 @@ client.on('message', message => {
 
 
 client.on('message', message => {
+	if (message.author.bot) return;
           let args = message.content.split(' ').slice(1);
    if(message.content.split(' ')[0] == '-color'){
            const embedd = new Discord.RichEmbed()
