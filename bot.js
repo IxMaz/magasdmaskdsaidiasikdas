@@ -11,6 +11,7 @@ client.on('ready', () => {
 });
 
 client.on('message', message =>{
+	if (message.author.bot) return;
     if(message.content === prefix + 'ping'){
 	   if(!message.channel.guild) return
 let start = Date.now(); message.channel.send('pong').then(message => { 
@@ -168,6 +169,7 @@ var prefix = "-";
 
 
 client.on('message', message => {
+	if (message.author.bot) return;
 var prefix = "-";
       if(message.content === prefix + "schannel") {
       if(!message.channel.guild) return;
@@ -182,6 +184,7 @@ var prefix = "-";
 
  client.on('message', message => {
               if (!message.channel.guild) return;
+	 if (message.author.bot) return;
       if(message.content =='-count')
       var IzRo = new Discord.RichEmbed()
       .setThumbnail(message.author.avatarURL)
@@ -194,7 +197,7 @@ var prefix = "-";
 
 
 client.on('message', msg => {
-
+if (msg.author.bot) return;
   if (msg.content === 'هلا') {
 
     msg.reply('**هلا حبي**');
@@ -204,7 +207,7 @@ client.on('message', msg => {
 });
 
 client.on('message', msg => {
-
+if (msg.author.bot) return;
   if (msg.content === 'السلام عليكم') {
 
     msg.reply('**وعليكم السلام**');
@@ -214,6 +217,7 @@ client.on('message', msg => {
 });
 
 client.on('message', message => {
+	if (message.author.bot) return;
 if (message.content.startsWith("-avatar")) {
   var mentionned = message.mentions.users.first();
 var x5bzm;
@@ -239,7 +243,7 @@ client.on("guildMemberAdd", member => {
 
 
 client.on('message', msg => {
-
+if (msg.author.bot) return;
   if (msg.content === 'Hi') {
 
     msg.reply('**Hi <3**');
@@ -256,6 +260,7 @@ client.on('guildCreate', gc =>{
 })
 
 client.on('message', msg => {
+	if (msg.author.bot) return;
   if (msg.content === 'هاي') {
     msg.reply('**هايي 💛**');
   }
@@ -453,7 +458,7 @@ member.addRole(Julian[member.user.id].roles.shift());
 
 client.on('message', message => {
 	if (message.author.bot) return;
-    if(message.content.startsWith(prefix + 'mvall')) {
+    if(message.content.startsWith(prefix + 'moveall')) {
 	    if(!message.channel.guild) return message.reply(':no_entry: | This Command For Servers Only!');
      if (!message.member.hasPermission("MOVE_MEMBERS")) return message.channel.send('**لايوجد لديك صلاحية سحب الأعضاء**');
        if(!message.guild.member(client.user).hasPermission("MOVE_MEMBERS")) return message.reply("**لايوجد لدي صلاحية السحب**");
@@ -656,6 +661,7 @@ client.channels.find('name', "log").send({embed : unmuteembed});
 
 
 client.on('message', message => {
+	if (message.author.bot) return;
     if (message.content.startsWith("رابط")) {
 
   message.channel.createInvite({
@@ -734,6 +740,7 @@ client.on('message',async message => {
 
 
 client.on('message', message => {
+	if (message.author.bot) return;
 const prefix = "-";
   if (message.author.kick) return;
   if (!message.content.startsWith(prefix)) return;
