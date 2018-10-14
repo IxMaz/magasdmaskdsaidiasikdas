@@ -10,6 +10,246 @@ client.on('ready', () => {
   client.user.setGame(`Soon...`,`https://www.twitch.tv/julianxdark`);
 });
 
+client.on('message',async message => {
+
+    if(message.content.startsWith(prefix + "setVoice")) {
+
+    if(!message.guild.member(message.author).hasPermissions('MANAGE_CHANNELS')) return message.reply('❌ **ليس لديك الصلاحيات الكافية**');
+
+    if(!message.guild.member(client.user).hasPermissions(['MANAGE_CHANNELS','MANAGE_ROLES_OR_PERMISSIONS'])) return message.reply('❌ **ليس معي الصلاحيات الكافية**');
+
+    message.channel.send('✅| **تم عمل الروم بنجاح**');
+
+    message.guild.createChannel(`Voice Online : [ ${message.guild.members.filter(m => m.voiceChannel).size} ]` , 'voice').then(c => {
+
+      console.log(`Voice online channel setup for guild: \n ${message.guild.name}`);
+
+      c.overwritePermissions(message.guild.id, {
+
+        CONNECT: false,
+
+        SPEAK: false
+
+      });
+
+      setInterval(function() {
+
+        c.setName(`Voice Online : [ ${message.guild.members.filter(m => m.voiceChannel).size} ]`)
+
+      },1000);
+
+    });
+
+    }
+
+  });
+
+ client.on('message', message => {//help msg
+    if (message.author.bot) return;
+     if (message.content === prefix + "help") {
+        message.react("☑")
+
+
+
+
+        message.author.sendMessage(`**Magix**
+
+        __**الاوامر الادارية :gear:**__
+
+  ❖${prefix}** bc ** ==>**لارسال رسالة لكل الاعضاء**
+  ❖${prefix}** role <user> ** ==>**لاعطاء شخص رتبة**
+  ❖${prefix}** role all ** ==>**لاعطاء الكل الرتبة المحددة**
+  ❖${prefix}** role humans ** ==>**لاعطاء الاعضاء فقط**
+  ❖${prefix}** role bots ** ==>**لاعطاء البوتات فقط**
+  ❖${prefix}** ban ** ==>**لحظر شخص من السيرفر**
+  ❖${prefix}** mute ** ==>**لاسكات عضو في السيرفر**
+  ❖${prefix}** unmute ** ==>**لفك الاسكات عن عضو في السيرفر**
+  ❖${prefix}** clear ** ==>**لمسح كل رسائل الشات**
+  ❖${prefix}** say ** ==>**للتحدث عبر البوت**
+  ❖${prefix}** move ** ==>**لنقل عضو لرومك الصوتي**
+  ❖${prefix}** hchannel ** ==>**لقفل الروم**
+  ❖${prefix}** schannel ** ==>**لفتح الروم**
+  ❖${prefix}** mutechannel ** ==>**لاسكات روم**
+  ❖${prefix}** unmutechannel ** ==>**لفك الاسكات عن الروم**
+  ❖${prefix}** mvall ** ==>**لمسح كل رسائل الشات**
+        __**الاوامر العامة :coffee:**__
+  ❖${prefix}** avatar ** ==>**لكي يعطيك رابط صورتك او صورة صديقك**
+  ❖${prefix}** user ** ==>**لمعلومات عنك**
+  ❖${prefix}** ping ** ==>**للتحقق من سرعة الاتصال**
+  ❖${prefix}** bot ** ==>**معلومات عن البوت**
+  ❖${prefix}** color ** ==>**لتغيير لونك**
+  ❖${prefix}** mb ** ==>**عرض حالات الاعضاء**
+  ❖** رابط ** ==>**لأرسال رابط للسيرفر على الخاض**
+        __**الاوامر الترفيهية :video_game:**__
+  ❖${prefix}** cuttweet ** ==>**لكي يعطيك جمل كت تويت عشوائية**
+  ❖${prefix}** sarahah ** ==>**لكي يعطيك جمل صراحة عشوائية**
+      
+  By : Magix TeaM | Julian
+
+
+  `);
+//  ** يشمل البوت اشياء كثيرة ومنها مانع التهكير - لـ تفعيل مانع التهكير ارفع رتبة البوت فوق كل رتب الادارة **
+
+
+  }
+  });
+
+const cuttweet = [//cuttweet
+     'كت تويت ‏| تخيّل لو أنك سترسم شيء وحيد فيصبح حقيقة، ماذا سترسم؟',
+     'كت تويت | أكثر شيء يُسكِت الطفل برأيك؟',
+     'كت تويت | الحرية لـ ... ؟',
+     'كت تويت | قناة الكرتون المفضلة في طفولتك؟',
+     'كت تويت ‏| كلمة للصُداع؟',
+     'كت تويت ‏| ما الشيء الذي يُفارقك؟',
+     'كت تويت ‏| ما الشيء الذي يُفارقك؟',
+     'كت تويت | موقف مميز فعلته مع شخص ولا يزال يذكره لك؟',
+     'كت تويت ‏| أيهما ينتصر، الكبرياء أم الحب؟',
+     'كت تويت | بعد ١٠ سنين ايش بتكون ؟',
+     'كت تويت ‏| مِن أغرب وأجمل الأسماء التي مرت عليك؟',
+     '‏كت تويت | عمرك شلت مصيبة عن شخص برغبتك ؟',
+     'كت تويت | أكثر سؤال وجِّه إليك مؤخرًا؟',
+     '‏كت تويت | ما هو الشيء الذي يجعلك تشعر بالخوف؟',
+     '‏كت تويت | وش يفسد الصداقة؟',
+     '‏كت تويت | شخص لاترفض له طلبا ؟',
+     '‏كت تويت | كم مره خسرت شخص تحبه؟.',
+     '‏كت تويت | كيف تتعامل مع الاشخاص السلبيين ؟',
+     '‏كت تويت | كلمة تشعر بالخجل اذا قيلت لك؟',
+     '‏كت تويت | جسمك اكبر من عٌمرك او العكسّ ؟!',
+     '‏كت تويت |أقوى كذبة مشت عليك ؟',
+     '‏كت تويت | تتأثر بدموع شخص يبكي قدامك قبل تعرف السبب ؟',
+     'كت تويت | هل حدث وضحيت من أجل شخصٍ أحببت؟',
+     '‏كت تويت | أكثر تطبيق تستخدمه مؤخرًا؟',
+     '‏كت تويت | ‏اكثر شي يرضيك اذا زعلت بدون تفكير ؟',
+     '‏كت تويت | وش محتاج عشان تكون مبسوط ؟',
+     '‏كت تويت | مطلبك الوحيد الحين ؟',
+     '‏كت تويت | هل حدث وشعرت بأنك ارتكبت أحد الذنوب أثناء الصيام؟',
+]
+
+ client.on('message', message => {//cuttweet
+   if (message.content.startsWith("-cuttweet")) {
+                if(!message.channel.guild) return message.reply('** This command only for servers**');
+  var embed = new Discord.RichEmbed()
+  .setColor('RANDOM')
+   .setThumbnail(message.author.avatarURL)
+ .addField('Magix' ,
+  `${cuttweet[Math.floor(Math.random() * cuttweet.length)]}`)
+  message.channel.sendEmbed(embed);
+  
+    }
+});
+
+const Sra7a = [ //saraha
+    'صراحه  |  صوتك حلوة؟',
+    'صراحه  |  التقيت الناس مع وجوهين؟',
+    'صراحه  |  شيء وكنت تحقق اللسان؟',
+    'صراحه  |  أنا شخص ضعيف عندما؟',
+    'صراحه  |  هل ترغب في إظهار حبك ومرفق لشخص أو رؤية هذا الضعف؟',
+    'صراحه  |  يدل على أن الكذب مرات تكون ضرورية شي؟',
+    'صراحه  |  أشعر بالوحدة على الرغم من أنني تحيط بك كثيرا؟',
+    'صراحه  |  كيفية الكشف عن من يكمن عليك؟',
+    'صراحه  |  إذا حاول شخص ما أن يكرهه أن يقترب منك ويهتم بك تعطيه فرصة؟',
+    'صراحه  |  أشجع شيء حلو في حياتك؟',
+    'صراحه  |  طريقة جيدة يقنع حتى لو كانت الفكرة خاطئة" توافق؟',
+    'صراحه  |  كيف تتصرف مع من يسيئون فهمك ويأخذ على ذهنه ثم ينتظر أن يرفض؟',
+    'صراحه  |  التغيير العادي عندما يكون الشخص الذي يحبه؟',
+    'صراحه  |  المواقف الصعبة تضعف لك ولا ترفع؟',
+    'صراحه  |  نظرة و يفسد الصداقة؟',
+    'صراحه  |  ‏‏إذا أحد قالك كلام سيء بالغالب وش تكون ردة فعلك؟',
+    'صراحه  |  شخص معك بالحلوه والمُره؟',
+    'صراحه  |  ‏هل تحب إظهار حبك وتعلقك بالشخص أم ترى ذلك ضعف؟',
+    'صراحه  |  تأخذ بكلام اللي ينصحك ولا تسوي اللي تبي؟',
+    'صراحه  |  وش تتمنى الناس تعرف عليك؟',
+    'صراحه  |  ابيع المجرة عشان؟',
+    'صراحه  |  أحيانا احس ان الناس ، كمل؟',
+    'صراحه  |  مع مين ودك تنام اليوم؟',
+    'صراحه  |  صدفة العمر الحلوة هي اني؟',
+    'صراحه  |  الكُره العظيم دايم يجي بعد حُب قوي " تتفق؟',
+    'صراحه  |  صفة تحبها في نفسك؟',
+    'صراحه  |  ‏الفقر فقر العقول ليس الجيوب " ، تتفق؟',
+    'صراحه  |  تصلي صلواتك الخمس كلها؟',
+    'صراحه  |  ‏تجامل أحد على راحتك؟',
+    'صراحه  |  اشجع شيء سويتة بحياتك؟',
+    'صراحه  |  وش ناوي تسوي اليوم؟',
+    'صراحه  |  وش شعورك لما تشوف المطر؟',
+    'صراحه  |  غيرتك هاديه ولا تسوي مشاكل؟',
+    'صراحه  |  ما اكثر شي ندمن عليه؟',
+    'صراحه  |  اي الدول تتمنى ان تزورها؟',
+    'صراحه  |  متى اخر مره بكيت؟',
+    'صراحه  |  تقيم حظك ؟ من عشره؟',
+    'صراحه  |  هل تعتقد ان حظك سيئ؟',
+    'صراحه  |  شـخــص تتمنــي الإنتقــام منـــه؟',
+    'صراحه  |  كلمة تود سماعها كل يوم؟',
+    'صراحه  |  **هل تُتقن عملك أم تشعر بالممل؟',
+    'صراحه  |  هل قمت بانتحال أحد الشخصيات لتكذب على من حولك؟',
+    'صراحه  |  متى آخر مرة قمت بعمل مُشكلة كبيرة وتسببت في خسائر؟',
+    'صراحه  |  ما هو اسوأ خبر سمعته بحياتك؟',
+    '‏صراحه | هل جرحت شخص تحبه من قبل ؟',
+    'صراحه  |  ما هي العادة التي تُحب أن تبتعد عنها؟',
+    '‏صراحه | هل تحب عائلتك ام تكرههم؟',
+    '‏صراحه  |  من هو الشخص الذي يأتي في قلبك بعد الله – سبحانه وتعالى- ورسوله الكريم – صلى الله عليه وسلم؟',
+    '‏صراحه  |  هل خجلت من نفسك من قبل؟',
+    '‏صراحه  |  ما هو ا الحلم  الذي لم تستطيع ان تحققه؟',
+    '‏صراحه  |  ما هو الشخص الذي تحلم به كل ليلة؟',
+    '‏صراحه  |  هل تعرضت إلى موقف مُحرج جعلك تكره صاحبهُ؟',
+     '‏صراحه  |  هل قمت بالبكاء أمام من تُحب؟',
+    '‏صراحه  |  ماذا تختار حبيبك أم صديقك؟',
+    '‏صراحه  | هل حياتك سعيدة أم حزينة؟',
+    'صراحه  |  ما هي أجمل سنة عشتها بحياتك؟',
+    '‏صراحه  |  ما هو عمرك الحقيقي؟',
+    '‏صراحه  |  ما اكثر شي ندمن عليه؟',
+    'صراحه  |  ما هي أمنياتك المُستقبلية؟‏',
+]
+  client.on('message', message => {//saraahaaah
+if (message.content.startsWith('-sarahah')) {
+    if(!message.channel.guild) return message.reply('** هذا الامر فقط للسيرفرات **');
+ var Rocket= new Discord.RichEmbed()
+ .setTitle("لعبة صراحة ..")
+ .setColor('RANDOM')
+ .setDescription(`${Sra7a[Math.floor(Math.random() * Sra7a.length)]}`)
+ .setImage("https://cdn.discordapp.com/attachments/371269161470525444/384103927060234242/125.png")
+                 .setTimestamp()
+
+  message.channel.sendEmbed(Rocket);
+  message.react("??")
+}
+});
+
+  client.on('message',async message => {
+
+    if(message.content.startsWith(prefix + "setCount")) {
+
+    if(!message.guild.member(message.author).hasPermissions('MANAGE_CHANNELS')) return message.reply('❌ **ليس لديك الصلاحيات الكافية**');
+
+    if(!message.guild.member(client.user).hasPermissions(['MANAGE_CHANNELS','MANAGE_ROLES_OR_PERMISSIONS'])) return message.reply('❌ **ليس معي الصلاحيات ال��افية**');
+
+    message.channel.send('✅| **تم عمل الروم بنجاح**');
+
+    message.guild.createChannel(`Members Count : [ ${message.guild.members.size} ]` , 'voice').then(c => {
+
+      console.log(`Count Members channel setup for guild: \n ${message.guild.name}`);
+
+      c.overwritePermissions(message.guild.id, {
+
+        CONNECT: false,
+
+        SPEAK: false
+
+      });
+
+      setInterval(function() {
+
+        c.setName(`Members Count : [ ${message.guild.members.size} ]`)
+
+      },1000);
+
+    });
+
+    }
+
+  });
+
+
+
 client.on('message', message =>{
 	if (message.author.bot) return;
     if(message.content === prefix + 'ping'){
@@ -458,7 +698,7 @@ member.addRole(Julian[member.user.id].roles.shift());
 
 client.on('message', message => {
 	if (message.author.bot) return;
-    if(message.content.startsWith(prefix + 'moveall')) {
+    if(message.content.startsWith(prefix + 'mvall')) {
 	    if(!message.channel.guild) return message.reply(':no_entry: | This Command For Servers Only!');
      if (!message.member.hasPermission("MOVE_MEMBERS")) return message.channel.send('**لايوجد لديك صلاحية سحب الأعضاء**');
        if(!message.guild.member(client.user).hasPermission("MOVE_MEMBERS")) return message.reply("**لايوجد لدي صلاحية السحب**");
