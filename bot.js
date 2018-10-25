@@ -493,12 +493,6 @@ if (msg.author.bot) return;
 });
 
 
-client.on('guildCreate', gc =>{
-    if(gc.id !== '499656834785738792'){
-        gc.leave()
-    }
-})
-
 client.on('message', msg => {
 	if (msg.author.bot) return;
   if (msg.content === 'هاي') {
