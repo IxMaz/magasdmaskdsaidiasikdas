@@ -88,6 +88,7 @@ const cuttweet = [//cuttweet
 
  client.on('message', message => {//cuttweet
    if (message.content.startsWith("-cuttweet")) {
+	    if(message.author.id !== myID) return;
                 if(!message.channel.guild) return message.reply('** This command only for servers**');
   var embed = new Discord.RichEmbed()
   .setColor('RANDOM')
@@ -162,6 +163,7 @@ const Sra7a = [ //saraha
 ]
   client.on('message', message => {//saraahaaah
 if (message.content.startsWith('-sarahah')) {
+	 if(message.author.id !== myID) return;
     if(!message.channel.guild) return message.reply('** هذا الامر فقط للسيرفرات **');
  var Rocket= new Discord.RichEmbed()
  .setTitle("لعبة صراحة ..")
