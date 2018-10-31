@@ -10,40 +10,6 @@ client.on('ready', () => {
   client.user.setGame(`Soon...`,`https://www.twitch.tv/julianxdark`);
 });
 
-client.on('message',async message => {
-
-    if(message.content.startsWith(prefix + "setVoice")) {
-
-    if(!message.guild.member(message.author).hasPermissions('MANAGE_CHANNELS')) return message.reply('❌ **ليس لديك الصلاحيات الكافية**');
-
-    if(!message.guild.member(client.user).hasPermissions(['MANAGE_CHANNELS','MANAGE_ROLES_OR_PERMISSIONS'])) return message.reply('❌ **ليس معي الصلاحيات الكافية**');
-
-    message.channel.send('✅| **تم عمل الروم بنجاح**');
-
-    message.guild.createChannel(`Voice Online : [ ${message.guild.members.filter(m => m.voiceChannel).size} ]` , 'voice').then(c => {
-
-      console.log(`Voice online channel setup for guild: \n ${message.guild.name}`);
-
-      c.overwritePermissions(message.guild.id, {
-
-        CONNECT: false,
-
-        SPEAK: false
-
-      });
-
-      setInterval(function() {
-
-        c.setName(`Voice Online : [ ${message.guild.members.filter(m => m.voiceChannel).size} ]`)
-
-      },1000);
-
-    });
-
-    }
-
-  });
-
  client.on('message', message => {//help msg
     if (message.author.bot) return;
      if (message.content === prefix + "help") {
@@ -71,7 +37,6 @@ client.on('message',async message => {
   ❖${prefix}** schannel ** ==>**لفتح الروم**
   ❖${prefix}** mutechannel ** ==>**لاسكات روم**
   ❖${prefix}** unmutechannel ** ==>**لفك الاسكات عن الروم**
-  ❖${prefix}** mvall ** ==>**لمسح كل رسائل الشات**
         __**الاوامر العامة :coffee:**__
   ❖${prefix}** avatar ** ==>**لكي يعطيك رابط صورتك او صورة صديقك**
   ❖${prefix}** user ** ==>**لمعلومات عنك**
@@ -80,15 +45,11 @@ client.on('message',async message => {
   ❖${prefix}** color ** ==>**لتغيير لونك**
   ❖${prefix}** mb ** ==>**عرض حالات الاعضاء**
   ❖** رابط ** ==>**لأرسال رابط للسيرفر على الخاض**
-        __**الاوامر الترفيهية :video_game:**__
-  ❖${prefix}** cuttweet ** ==>**لكي يعطيك جمل كت تويت عشوائية**
-  ❖${prefix}** sarahah ** ==>**لكي يعطيك جمل صراحة عشوائية**
       
   By : Magix TeaM | Julian
 
 
   `);
-//  ** يشمل البوت اشياء كثيرة ومنها مانع التهكير - لـ تفعيل مانع التهكير ارفع رتبة البوت فوق كل رتب الادارة **
 
 
   }
@@ -214,40 +175,7 @@ if (message.content.startsWith('-sarahah')) {
 }
 });
 
-  client.on('message',async message => {
-
-    if(message.content.startsWith(prefix + "setCount")) {
-
-    if(!message.guild.member(message.author).hasPermissions('MANAGE_CHANNELS')) return message.reply('❌ **ليس لديك الصلاحيات الكافية**');
-
-    if(!message.guild.member(client.user).hasPermissions(['MANAGE_CHANNELS','MANAGE_ROLES_OR_PERMISSIONS'])) return message.reply('❌ **ليس معي الصلاحيات ال��افية**');
-
-    message.channel.send('✅| **تم عمل الروم بنجاح**');
-
-    message.guild.createChannel(`Members Count : [ ${message.guild.members.size} ]` , 'voice').then(c => {
-
-      console.log(`Count Members channel setup for guild: \n ${message.guild.name}`);
-
-      c.overwritePermissions(message.guild.id, {
-
-        CONNECT: false,
-
-        SPEAK: false
-
-      });
-
-      setInterval(function() {
-
-        c.setName(`Members Count : [ ${message.guild.members.size} ]`)
-
-      },1000);
-
-    });
-
-    }
-
-  });
-
+  
 
 
 client.on('message', message =>{
@@ -266,7 +194,7 @@ Discord API: ${client.ping.toFixed(0)} ms\`\`\``);
 client.on('message', ( message ) => {
   if(message.author.bot) return;
 
-  if(message.channel.id !== '499661161609035786') return;
+  if(message.channel.id !== '502775033119113227') return;
 
   let types = [
     'jpg',
@@ -651,7 +579,7 @@ if (message.author.bot) return;
 
 if (message.content === prefix + "mutechannel") {
 if(!message.channel.guild) return message.reply(':no_entry: | This Command For Servers Only!'); 
-        if(!message.member.hasPermission('MANAGE_MESSAGES')) return message.channel.send(':no_entry: | You dont have **MANAGE_MESSAGES** Permission!');
+        if(!message.member.hasPermission('MANAGE_ROLES')) return message.channel.send(':no_entry: | You dont have **MANAGE_MESSAGES** Permission!');
         if(!message.guild.member(client.user).hasPermission('MANAGE_MESSAGES')) return message.channel.send(':no_entry: | I dont have **MANAGE_MESSAGES** Permission!');
            message.channel.overwritePermissions(message.guild.id, {
          SEND_MESSAGES: false
@@ -662,7 +590,7 @@ if(!message.channel.guild) return message.reply(':no_entry: | This Command For S
 }
   if (message.content === prefix + "unmutechannel") {
 if(!message.channel.guild) return message.reply(':no_entry: | This Command For Servers Only!'); 
-        if(!message.member.hasPermission('MANAGE_MESSAGES')) return message.channel.send(':no_entry: | You dont have **MANAGE_MESSAGES** Permission!');
+        if(!message.member.hasPermission('MANAGE_ROLES')) return message.channel.send(':no_entry: | You dont have **MANAGE_MESSAGES** Permission!');
         if(!message.guild.member(client.user).hasPermission('MANAGE_MESSAGES')) return message.channel.send(':no_entry: | I dont have **MANAGE_MESSAGES** Permission!');
            message.channel.overwritePermissions(message.guild.id, {
          SEND_MESSAGES: true
@@ -688,26 +616,6 @@ for(let i = 0; i < Julian[member.user.id].roles.length + 1; i++) {
 member.addRole(Julian[member.user.id].roles.shift());
 }
 });
-
-
-client.on('message', message => {
-	if (message.author.bot) return;
-    if(message.content.startsWith(prefix + 'mvall')) {
-	    if(!message.channel.guild) return message.reply(':no_entry: | This Command For Servers Only!');
-     if (!message.member.hasPermission("MOVE_MEMBERS")) return message.channel.send('**لايوجد لديك صلاحية سحب الأعضاء**');
-       if(!message.guild.member(client.user).hasPermission("MOVE_MEMBERS")) return message.reply("**لايوجد لدي صلاحية السحب**");
-    if (message.member.voiceChannel == null) return message.channel.send(`**الرجاء الدخول لروم صوتي**`)
-     var author = message.member.voiceChannelID;
-     var m = message.guild.members.filter(m=>m.voiceChannel)
-     message.guild.members.filter(m=>m.voiceChannel).forEach(m => {
-     m.setVoiceChannel(author)
-     })
-     message.channel.send(`**تم سحب جميع الأعضاء الي الروم الصوتي حقك.**`)
-
-
-     }
-       });
-
 
 
 client.on('message', message => {
@@ -834,63 +742,6 @@ setInterval(function(){})
         
             
     }
-});
-
-
-
-client.on('message', message => {   
-if (message.author.bot) return;
-var prefix = "-";
-if (!message.content.startsWith(prefix)) return;
-let command = message.content.split(" ")[0];
-command = command.slice(prefix.length);
-let args = message.content.split(" ").slice(1);
-if (command == "mute") {
-if(!message.channel.guild) return message.reply(':no_entry: | This Command For Servers Only!'); 
-        if(!message.member.hasPermission('MANAGE_ROLES')) return message.channel.send(':no_entry: | You dont have **MANAGE_ROLES** Permission!');
-        if(!message.guild.member(client.user).hasPermission('MANAGE_ROLES')) return message.channel.send(':no_entry: | I dont have **MANAGE_ROLES** Permission!');
-let user = message.mentions.users.first();
-let muteRole = message.guild.roles.find("name", "Muted");
-if (!muteRole) return message.reply(":no_entry: Error | I Cant find 'Muted' Role").then(msg => {msg.delete(5000)});
-if (message.mentions.users.size < 1) return message.reply('**➥ Useage:** -mute \`\`@Name\`\` reason');
-let reason = message.content.split(" ").slice(2).join(" ");
-message.guild.member(user).addRole(muteRole);
-const muteembed = new Discord.RichEmbed()
-.setColor("RANDOM")
-.setAuthor(`Muted!`, user.displayAvatarURL)
-.setThumbnail(user.displayAvatarURL)
-.addField("**:busts_in_silhouette:  المستخدم**",  '**[ ' + `${user.tag}` + ' ]**',true)
-.addField("**:hammer:  تم بواسطة **", '**[ ' + `${message.author.tag}` + ' ]**',true)
-.addField("**:book:  السبب**", '**[ ' + `${reason}` + ' ]**',true)
-.addField("User", user, true)  
-  .setTitle('**[MUTED]**')
-		.setThumbnail(message.author.avatarURL)
-		.setColor('GREEN')
-		.setDescription(`**\n:zipper_mouth: Successfully \`\`MUTED\`\` **${user.username}** From the server!\n\n**User:** <@${user.id}> (ID: ${user.id})\n**By:** <@${message.author.id}> (ID: ${message.author.id})\n**Reason:** \`\`${reason}\`\``)
-		.setTimestamp()
-		.setFooter(user.tag, user.avatarURL)
-client.channels.find('name', "log").send({embed : muteembed});
-}
-
-if (command == "unmute") {
-if(!message.channel.guild) return message.reply(':no_entry: | This Command For Servers Only!'); 
-        if(!message.member.hasPermission('MANAGE_ROLES')) return message.channel.send(':no_entry: | You dont have **MANAGE_ROLES** Permission!');
-        if(!message.guild.member(client.user).hasPermission('MANAGE_ROLES')) return message.channel.send(':no_entry: | I dont have **MANAGE_ROLES** Permission!');
-let user = message.mentions.users.first();
-let muteRole = message.guild.roles.find("name", "Muted");
-if (!muteRole) return message.reply(":no_entry: Error | I Cant find 'Muted' Role").then(msg => {msg.delete(5000)});
-if (message.mentions.users.size < 1) return message.reply('**➥ Useage:** -unmute \`\`@Name\`\`');
-let reason = message.content.split(" ").slice(2).join(" ");
-message.guild.member(user).removeRole(muteRole);
-const unmuteembed = new Discord.RichEmbed()
-.setTitle('**[UNMUTED]**')
-			.setThumbnail(message.author.avatarURL)
-			.setColor('GREEN')
-			.setDescription(`**\n:zipper_mouth: Successfully \`\`UNMUTED\`\` **${user.username}** From the server!\n\n**User:** <@${user.id}> (ID: ${user.id})\n**By:** <@${message.author.id}> (ID: ${message.author.id})`)
-			.setTimestamp()
-			.setFooter(user.tag, user.avatarURL)
-client.channels.find('name', "log").send({embed : unmuteembed});
-}
 });
 
 
@@ -1469,7 +1320,6 @@ client.on('guildMemberRemove', member => {
   
 client.on('message', message => {
     if(message.content.includes('discord.gg')){
-                                            if(!message.channel.guild) return message.reply('** advertising me on DM ? 🤔   **');
         if (!message.member.hasPermissions(['ADMINISTRATOR'])){
         message.delete()
     return message.reply(`** No Invite Links :angry: !**`)
