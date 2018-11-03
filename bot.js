@@ -55,6 +55,24 @@ client.on('ready', () => {
   }
   });
 
+client.on("guildMemberAdd", m => {
+        let room = m.guild.channels.find(a => a.name === 'general'); //
+    if (datediff(parseDate(moment(m.user.createdTimestamp).format('l')), parseDate(moment().format('l'))) < 8) {
+        m.ban() .then((
+            room.send(`**:no_entry: | ${m} Has been banned for: \`fake\`**`)
+        ));
+    };
+    function parseDate(str) {
+        var mdy = str.split('/');
+        return new Date(mdy[2], mdy[0]-1, mdy[1]);
+    };
+    
+    function datediff(first, second) {
+        return Math.round((second-first)/(1000*60*60*24));
+    };
+});
+
+
 const cuttweet = [//cuttweet
      'كت تويت ‏| تخيّل لو أنك سترسم شيء وحيد فيصبح حقيقة، ماذا سترسم؟',
      'كت تويت | أكثر شيء يُسكِت الطفل برأيك؟',
