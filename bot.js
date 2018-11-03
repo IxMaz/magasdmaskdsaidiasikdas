@@ -7,7 +7,7 @@ const myID = "470366007748198401";
 
 client.on('ready', () => {
   console.log(`[Magix] Logged in as ${client.user.tag}!`);      
-  client.user.setGame(`Soon...`,`https://www.twitch.tv/julianxdark`);
+  client.user.setGame(`Nothing`,`https://www.twitch.tv/julianxdark`);
 });
 
  client.on('message', message => {//help msg
