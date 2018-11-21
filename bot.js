@@ -10,6 +10,7 @@ client.on('ready', () => {
   client.user.setGame(`Magix Server ..`,`https://www.twitch.tv/julianxdark`);
 });
 
+
  client.on('message', message => {//help msg
     if (message.author.bot) return;
      if (message.content === prefix + "help") {
