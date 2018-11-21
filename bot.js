@@ -1265,17 +1265,6 @@ client.on('guildMemberRemove', member => {
 });
 
 
-
-  
-client.on('message', message => {
-    if(message.content.includes('discord.gg')){
-        if (!message.member.hasPermissions(['ADMINISTRATOR'])){
-        message.delete()
-    return message.reply(`** No Invite Links :angry: !**`)
-    }
-}
-});
-
 client.on('message', message => {
     if(message.content.includes('discordapp.com/invite/')){
                                             if(!message.channel.guild) return message.reply('** advertising me on DM ? 🤔   **');
