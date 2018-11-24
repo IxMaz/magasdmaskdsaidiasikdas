@@ -10,6 +10,19 @@ client.on('ready', () => {
   client.user.setGame(`Magix Server ..`,`https://www.twitch.tv/julianxdark`);
 });
 
+client.on('voiceStateUpdate', (old, now) => {
+
+  const channel = client.channels.get('499661738627563570');
+
+  const currentSize = channel.guild.members.filter(m => m.voiceChannel).size;
+
+  const size = channel.name.match(/\[\s(\d+)\s\]/);
+
+  if (!size) return channel.setName(`Magix Voice: [ ${currentSize} ]`);
+
+  if (currentSize !== size) channel.setName(`Magix Voice: [ ${currentSize} ]`);
+
+});
 
  client.on('message', message => {//help msg
     if (message.author.bot) return;
